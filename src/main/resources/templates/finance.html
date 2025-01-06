@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finance</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<h1>Financial overview</h1>
+<div>
+    <h2>Bank accounts</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Account name </th>
+            <th>Accountnumber </th>
+            <th>Balance</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(bankaccounts)}">
+            <td colspan="4">No accounts available.</td>
+        </tr>
+        <tr th:each= "account: ${bankaccounts}" th:unless="${#lists.isEmpty(bankaccounts)}">
+            <td th:text="${account.name}">Account name</td>
+            <td th:text="${account.accountNumber}">Accountnumber</td>
+            <td th:text="${account.balance.balance}">Balance</td>
+            <td>
+                <a th:href="@{finance/accounts/{id}(id=${account.internalId})}">View Account Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

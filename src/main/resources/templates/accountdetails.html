@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finance</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+</head>
+<body>
+<h1>Account overview</h1>
+<table>
+    <thead>
+        <tr>
+            <th colspan = "2">Account details</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Account name</td>
+            <td th:text="${account.name}">Account name</td>
+        </tr>
+        <tr>
+            <td>Account number</td>
+            <td th:text="${account.accountNumber}">Account number</td>
+        </tr>
+        <tr>
+            <td>Balance</td>
+            <td th:text="${account.balance.balance}">Balance</td>
+        </tr>
+    </tbody>
+</table>
+<div>
+    <h2>Mutation Overview</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Mutation ID</th>
+            <th>Account name</th>
+            <th>Account Number</th>
+            <th>Date</th>
+            <th>Category</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.isEmpty(account.mutations.mutations)}">
+            <td colspan="7">No mutations available.</td>
+        </tr>
+        <tr th:each= "mutation: ${account.mutations.mutations}" th:unless="${#lists.isEmpty(account.mutations.mutations)}">
+            <td th:text="${mutation.internalId}">Mutation ID</td>
+            <td th:text="${account.name}">Account name</td>
+            <td th:text="${account.accountNumber}">Account Number</td>
+            <td th:text="${mutation.dateTime}">Date</td>
+            <td th:text="${mutation.category}">Category</td>
+            <td th:text="${mutation.amount}">Amount</td>
+            <td><a th:href="@{finance/mutations/{id}(id=${mutation.internalId})}">Alter Mutation Details</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<a th:href="${baseUrl + 'finance'}">Back to finance</a>
+</body>
+</html>
