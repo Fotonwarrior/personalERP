@@ -12,7 +12,7 @@ import java.util.Optional;
 @Controller
 public class FinancePageController {
     FinanceModule dataModel;
-    @Value("${app.base-url}")
+    //@Value("${app.base-url}")
     private String baseUrl;
     public FinancePageController() {
         dataModel = new FinanceModule();
