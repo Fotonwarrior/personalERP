@@ -11,6 +11,7 @@
 	<groupId>Bomhofsoft</groupId>
 	<artifactId>Personal_ERP</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
 	<name>Personal_ERP</name>
 	<description>Personal ERP system with webui</description>
 	<url/>
